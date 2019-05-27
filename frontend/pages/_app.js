@@ -11,7 +11,10 @@ class MyApp extends App {
 		if (Component.getInitialProps) {
 		  pageProps = await Component.getInitialProps(ctx);
 		}
-		// this exposes the query params to the client
+		// this exposes the query params to each page
+		// which could then (if it wishes) pass the query
+		// params to each Component. See pages/update.js
+		// for an example
 		pageProps.query = ctx.query;
 		return { pageProps };
 	}
