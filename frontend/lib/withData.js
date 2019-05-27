@@ -8,6 +8,7 @@ function createClient({ headers }) {
     request: operation => {
       operation.setContext({
         fetchOptions: {
+          // Cookies come along with each request
           credentials: 'include',
         },
         headers,
@@ -16,4 +17,6 @@ function createClient({ headers }) {
   });
 }
 
+/* withApollo is a high order component. It exposes the Apollo
+   client as a prop. The client is called in the pages/_app.js */
 export default withApollo(createClient);
