@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Title from './styles/Title';
+import DeleteItem from './DeleteItem';
 import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
@@ -47,7 +48,7 @@ export default class Item extends Component {
 						<a>Edit ✏️</a>
 					</Link>
 					<button>Add To Cart</button>
-					<button>Delete </button>
+					<DeleteItem id={item.id}>Delete This Item</DeleteItem>
 				</div>
 			</ItemStyles>
 		);

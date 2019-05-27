@@ -50,6 +50,9 @@ class UpdateItem extends Component {
 	};
 
 	render() {
+		if (!this.props.id) {
+			return <Error error={{message: "ID is missing"}} />
+		}
 		return (
 			<Query
 				query={SINGLE_ITEM_QUERY}
