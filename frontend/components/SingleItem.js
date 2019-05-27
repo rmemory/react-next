@@ -36,6 +36,9 @@ const SINGLE_ITEM_QUERY = gql`
 `;
 class SingleItem extends Component {
 	render() {
+		if (!this.props.id) {
+			return <Error error={{message: "Item ID is missing"}} />
+		}
 		return (
 			<Query
 				query={SINGLE_ITEM_QUERY}
