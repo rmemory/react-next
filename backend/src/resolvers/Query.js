@@ -23,18 +23,30 @@ const Query = {
 
 	items: forwardTo('db'),
 	// async items(parent, args, ctx, info) {
-	//   console.log('Getting Items!!');
+	//	 console.log('Getting Items!!');
 
-	//   // We can just use forwardTo because it is identical
-	//   const items = await ctx.db.query.items();
-	//   return items;
+	//	 // We can just use forwardTo because it is identical
+	//	 const items = await ctx.db.query.items();
+	//	 return items;
 	// },
 
 	itemsConnection: forwardTo('db'),
 	// async this.itemsConnection(parent, args, ctx, info) {
 	// 	itemsConnection(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemConnection!
-
 	// }
+
+	me(parent, args, ctx, info) {
+		// check if there is a current user ID
+		if (!ctx.request.userId) {
+			return null;
+		}
+		
+		return ctx.db.query.user({
+				where: { id: ctx.request.userId },
+			},
+			info
+		);
+	},
 };
 
 module.exports = Query;
